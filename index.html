@@ -63,13 +63,6 @@
 <tr><td>RAG <code>chunk_hash</code></td><td>Accepted until the producer emits it. <a href="https://github.com/imhttran/rag-template-rust/issues/8">Follow-up filed</a>.</td></tr>
 <tr><td>13 scanner baseline entries</td><td>Expire 2027-03-31. Renewal is needed or the SAST gate fails.</td></tr>
 </tbody></table></div>
-<h4>What I learned</h4>
-<ul>
-<li><strong>Written status goes stale.</strong> A security fix shipped, yet the decision log still listed it as open. Re-check the docs when the code changes, not just the code.</li>
-<li><strong>A plan's "just configuration" can be wrong.</strong> One control I planned to switch on needed a private file of secret values and failed closed without it. The other had no config setting at all. Read how a feature is switched on before you promise to switch it on.</li>
-<li><strong>Test under the real conditions.</strong> A test passed on my machine and failed on CI because it ran with a 10-second limit. A sandboxed build starts cold and needs far longer. The fix was to use the production timeout.</li>
-<li><strong>Exceptions that expire are deadlines.</strong> 13 accepted scanner findings lapse on 2027-03-31, and the security gate fails after that unless they're renewed. Put the date on a calendar.</li>
-</ul>
 <h4>How this compares to OWASP tooling in the MCP ecosystem</h4>
 <p>The closest public example, the <a href="https://glama.ai/mcp/servers/santosomar/owasp_cheatsheets_mcp_server">OWASP Cheatsheets MCP server</a>, is a reference library, while SOP enforces controls on the agent's own actions. I read its Glama page only, not its code.</p>
 <div class="security-table-wrap"><table><caption>OWASP Cheatsheets MCP server compared with SOP</caption><thead><tr><th scope="col"></th><th scope="col">OWASP Cheatsheets MCP server</th><th scope="col">SOP</th></tr></thead><tbody>
